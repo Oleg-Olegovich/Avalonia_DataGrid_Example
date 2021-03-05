@@ -1,0 +1,50 @@
+<Window xmlns="https://github.com/avaloniaui"
+        xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+        xmlns:vm="clr-namespace:DataGridExample.ViewModels;assembly=DataGridExample"
+        xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
+        xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+        mc:Ignorable="d" d:DesignWidth="800" d:DesignHeight="450"
+        Width="800" Height="450"
+        x:Class="DataGridExample.Views.MainWindow"
+        Icon="/Assets/avalonia-logo.ico"
+        Title="DataGridExample">
+
+    <Design.DataContext>
+        <vm:MainWindowViewModel />
+    </Design.DataContext>
+
+    <StackPanel>
+        <DataGrid Items="{Binding People}">
+            <DataGrid.Columns>
+				<DataGridTemplateColumn Header="{Binding Text}">
+					<DataGridTemplateColumn.CellTemplate>
+						<DataTemplate>
+							<CheckBox IsChecked="{Binding IsChecked}"/>
+						</DataTemplate>
+					</DataGridTemplateColumn.CellTemplate>
+				</DataGridTemplateColumn>
+                <DataGridTextColumn Header="First Name" 
+                                    Binding="{Binding FirstName}" 
+                                    Width="*" />
+                <DataGridTextColumn Header="Last Name" 
+                                    Binding="{Binding LastName}" 
+                                    Width="*" />
+                <DataGridTextColumn Header="Department" 
+                                    Binding="{Binding DepartmentNumber}" 
+                                    Width="*" />
+                <DataGridTemplateColumn Header="Button">
+                    <DataGridTemplateColumn.CellTemplate>
+                        <DataTemplate>
+                            <StackPanel>
+								<Button Content="Add"/>
+								<!-- Button will not work, if "Command" property is added -->
+								<Button Content="Add"
+									Command="{Binding ButtonAction}"/>
+                            </StackPanel>
+                        </DataTemplate>
+                    </DataGridTemplateColumn.CellTemplate>
+                </DataGridTemplateColumn>
+            </DataGrid.Columns>
+        </DataGrid>
+    </StackPanel>
+</Window>
