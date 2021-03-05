@@ -39,7 +39,7 @@
 								<Button Content="Add"/>
 								<!-- Button will not work, if "Command" property is added -->
 								<Button Content="Add"
-									Command="{Binding ButtonAction}"/>
+									Command="{Binding Path=DataContext.ButtonCommand, RelativeSource={RelativeSource AncestorType=Window}}"/>
                             </StackPanel>
                         </DataTemplate>
                     </DataGridTemplateColumn.CellTemplate>
